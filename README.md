@@ -81,15 +81,25 @@ The application should now be running at http://localhost:5173 (or the port spec
 ### 📂 Project Structure
 f1-telemetry-tool/
 ├── backend/
+
 │   ├── api.py           # FastAPI endpoints (Router)
+
 │   ├── analysis.py      # Core logic (FastF1 integration, math, AI)
+
 │   └── cache/           # Local cache for F1 data (auto-generated)
+
 ├── frontend/
+
 │   ├── src/
+
 │   │   ├── App.jsx      # Main UI component & Logic
+
 │   │   ├── main.jsx     # React entry point
+
 │   │   └── index.css    # Global styles
+
 │   └── package.json     # JS dependencies
+
 └── README.md
 
 ### ⚖️ License & Acknowledgements
