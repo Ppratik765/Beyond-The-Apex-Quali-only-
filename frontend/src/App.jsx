@@ -135,14 +135,13 @@ function App() {
   return (
     <div style={{ padding: '20px', background: '#121212', color: '#e0e0e0', minHeight: '100vh', fontFamily: 'Inter, sans-serif' }}>
       
-      {loading && (
-        <div className="loading-message">)}
+      {loading && <div className="loading-message"/>}
 
       {error && <div className="error-message" style={{color: 'red'}}>{error}</div>}
       
       {/* HEADER */}
       <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'20px'}}>
-        <h1 style={{margin:0, fontSize: '2.5em'}}>🏎️ Beyond The Apex</h1>
+        <h1 style={{margin:0, fontSize: '2em'}}>🏎️ Beyond The Apex</h1>
         <div style={{fontSize:'0.8em', color:'#666', background:'#1a1a1a', padding:'5px 10px', borderRadius:'4px'}}>
           🖱️ <b>Drag</b> to Zoom &nbsp; | &nbsp; ⇧ <b>Shift + Drag</b> to Pan &nbsp; | &nbsp; 
           <span style={{cursor:'pointer', color:'#e10600', fontWeight:'bold'}} onClick={resetAllCharts}>⟲ Reset All</span>
@@ -329,3 +328,4 @@ const chartTitleStyle = { margin:0, color:'#666', fontSize:'0.8em', letterSpacin
 
 
 export default App;
+
