@@ -27,22 +27,30 @@ function App() {
   const [activeDrivers, setActiveDrivers] = useState([]);
 
   const fetchData = async () => {
+    if (!inputs.race || !inputs.session) return;
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.get(`${API_BASE_URL}/analyze`, { params: params });
-      if (res.data.status === 'error') {
-        setError(res.data.message);
-        setData(null);
-      } else {
-        res.data.data.ai_insights = res.data.ai_insights; 
-        setData(res.data.data);
-        setActiveDrivers(inputs.drivers.split(',').map(d => d.trim().toUpperCase()));
+// 1. DEFINE PARAMS HERE
+      const params = { ...inputs };
+      
+      // 2. Add specific laps logic if needed
+      if(lapsToFetch && lapsToFetch.length > 0) {
+          params.specific_laps = JSON.stringify(lapsToFetch);
+      } else if (isRaceOrPractice) {
+           setLoading(false); return;
       }
-    } catch (err) {
-      console.error(err);
-      setError("Failed to connect. Is Python running?");
-    }
+
+      // 3. NOW 'params' EXISTS AND CAN BE USED
+      const res = await axios.get(`${API_BASE_URL}/analyze`, { params: params });
+      
+      if (res.data.status === 'error') throw new Error(res.data.message);
+      
+      res.data.data.ai_insights = res.data.ai_insights;
+      setTelemetryData(res.data.data);
+      if(!raceLapData) setActiveDrivers(inputs.drivers.split(',').map(d => d.trim().toUpperCase()));
+
+    } catch (err) { setError(err.message || "Failed to fetch telemetry."); }
     setLoading(false);
   };
 
@@ -320,4 +328,5 @@ const chartTitleStyle = { margin:0, color:'#666', fontSize:'0.8em', letterSpacin
 
 
 export default App;
+
 
