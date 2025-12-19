@@ -1,6 +1,9 @@
 # Beyond The Apex
 Beyond The Apex is an advanced F1 telemetry tool using the FastF1 API for data visualisation from 2021 onward. It has Qualifying Session analysis(only fastest lap) for precise analysis between drivers (speed, throttle/brake, G-force) and includes an AI Race Engineer that detects driving style differences and strategic advantages automatically.
 
+🔗 **Live Website:**
+https://beyond-the-apex.vercel.app/
+
 ## Project Screenshot 
 <img width="1891" height="874" alt="image" src="https://github.com/user-attachments/assets/f1976274-fc23-49a3-9c3b-d42c39decc31" /><img width="1888" height="879" alt="image" src="https://github.com/user-attachments/assets/a9e43120-28a7-44f2-b7a0-530a37292961" />
 
@@ -39,44 +42,39 @@ Beyond The Apex is an advanced F1 telemetry tool using the FastF1 API for data v
 - Node.js & npm
 - Python 3.8+
 
-### 1. Backend Setup
-The backend handles data fetching and mathematical analysis.
+### Installation
 
-```bash
-# Navigate to the backend folder
-cd backend
+1.  **Clone the repository**
+    ```bash
+    git clone [https://github.com/Ppratik765/beyond-the-apex.git](https://github.com/Ppratik765/beyond-the-apex.git)
+    cd beyond-the-apex
+    ```
 
-# Create a virtual environment (Recommended)
-python -m venv venv
-# Windows:
-.\venv\Scripts\activate
-# Mac/Linux:
-source venv/bin/activate
+2.  **Install dependencies**
+    ```bash
+    npm install
+    ```
 
-# Install dependencies
-pip install fastapi uvicorn fastf1 pandas numpy
+3.  **Configure Environment Variables**
+    Create a `.env` file in the root directory and add your backend URL:
+    ```env
+    VITE_API_URL=[https://beyond-the-apex.onrender.com](https://beyond-the-apex.onrender.com)
+    ```
+    *(Note: Ensure there is no trailing slash at the end of the URL)*
 
-# Run the server
-# The server will start on http://localhost:8000
-python api.py
-```
+4.  **Run the development server**
+    ```bash
+    npm run dev
+    ```
+The application should now be running at https://beyond-the-apex.vercel.app/
 
-### 2. Frontend Setup
-The frontend visualises the data.
+## ⚠️ Known Limitations
 
-```
-Bash
-
-# Open a new terminal and navigate to the frontend folder
-cd frontend
-
-# Install dependencies
-npm install axios chart.js react-chartjs-2 chartjs-plugin-zoom
-
-# Run the development server
-npm run dev
-```
-The application should now be running at http://localhost:5173 (or the port specified by your terminal).
+**Initial Load Time (Cold Start):**
+This project is currently hosted on the **Render Free Tier**.
+* The backend server automatically spins down after 15 minutes of inactivity to save resources.
+* **Impact:** The first request after a period of inactivity may take **40–60 seconds** while the server "wakes up."
+* **Solution:** Please be patient on the first load; subsequent requests will be instantaneous.
 
 ### 📂 Project Structure
 ```
